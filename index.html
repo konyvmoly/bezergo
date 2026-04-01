@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Támogasd a Bezergő Egyesületet 💚</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
@@ -11,46 +12,49 @@
       padding: 0;
       text-align: center;
       color: #2d3436;
-
-      /* Virágos háttér */
       background-image: url("https://images.unsplash.com/photo-1490750967868-88aa4486c946");
       background-size: cover;
       background-position: center;
     }
 
-    /* halvány fehér réteg, hogy olvasható maradjon */
     .overlay {
       background: rgba(255,255,255,0.85);
       min-height: 100vh;
-      padding: 40px 20px;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .card {
       background: white;
       border-radius: 20px;
-      padding: 25px;
-      max-width: 420px;
-      margin: auto;
+      padding: 20px;
+      max-width: 95%;
+      width: 420px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      box-sizing: border-box;
     }
 
     .logo {
-      max-width: 120px;
+      max-width: 100px;
+      height: auto;
       margin-bottom: 10px;
     }
 
     h1 {
       margin: 10px 0;
+      font-size: 1.6em;
     }
 
     .label {
       font-size: 13px;
       opacity: 0.7;
-      margin-top: 15px;
+      margin-top: 12px;
     }
 
     .value {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: bold;
       margin-top: 5px;
       word-break: break-word;
@@ -58,19 +62,18 @@
 
     .notice {
       background: #ffeaa7;
-      padding: 15px;
+      padding: 12px;
       border-radius: 12px;
-      margin: 20px 0;
+      margin: 15px 0;
       font-weight: bold;
+      font-size: 14px;
     }
 
-    .qr {
-      margin-top: 20px;
-    }
-
-    .qr img {
-      width: 180px;
-      border-radius: 12px;
+    .hint {
+      font-size: 12px;
+      opacity: 0.7;
+      margin-top: 10px;
+      margin-bottom: 5px;
     }
 
     button {
@@ -81,25 +84,32 @@
       border-radius: 10px;
       cursor: pointer;
       font-size: 14px;
-      margin: 5px;
+      margin: 5px 3px;
+      width: 30%;
+      min-width: 80px;
     }
 
     button:hover {
       background: #019875;
     }
 
+    .qr {
+      margin-top: 15px;
+    }
+
+    .qr img {
+      width: 150px;
+      max-width: 40vw;
+      border-radius: 12px;
+    }
+
     .thanks {
-      margin-top: 20px;
-      font-size: 14px;
+      margin-top: 15px;
+      font-size: 13px;
       opacity: 0.8;
     }
 
-    .hint {
-      font-size: 13px;
-      opacity: 0.7;
-      margin-top: 10px;
-      margin-bottom: 5px;
-    }
+    /* TOAST */
     #toast {
       position: fixed;
       bottom: 30px;
@@ -120,15 +130,20 @@
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
+
+    /* Mobilra kisebb címek és gombok */
+    @media (max-width: 400px) {
+      h1 { font-size: 1.4em; }
+      button { font-size: 13px; padding: 8px 12px; }
+      .notice { font-size: 13px; padding: 10px; }
+      .value { font-size: 15px; }
+    }
   </style>
 </head>
 
 <body>
   <div class="overlay">
-
     <div class="card">
-
-      <!-- LOGÓ HELYE -->
       <img src="logo.png" alt="Bezergő Egyesület logó" class="logo">
 
       <h1>🌱 Támogass minket!</h1>
@@ -138,45 +153,37 @@
       <div class="value" id="name">Bezergő Egyesület</div>
 
       <div class="label">Számlaszám</div>
-      <div class="value" id="accountNumber">
-        11600006-00000002-05047439
-      </div>
+      <div class="value" id="accountNumber">11600006-00000002-05047439</div>
 
       <div class="notice">
         🌼 Közlemény:<br>
         <strong id="message">virágosítás</strong>
       </div>
 
-      <div class="hint">
-        📋 Koppints a gyors másoláshoz
-      </div>
+      <div class="hint">📋 Koppints a gyors másoláshoz</div>
+
       <div>
         <button onclick="copyText('name')">Név</button>
         <button onclick="copyText('accountNumber')">Számlaszám</button>
         <button onclick="copyText('message')">Közlemény</button>
       </div>
 
-      <div class="thanks">
-        💚 Minden támogatás egy új virág!
-      </div>
-
+      <div class="thanks">💚 Minden támogatás egy új virág!</div>
     </div>
-
   </div>
   <div id="toast">✔ Kimásolva 🌼</div>
 
   <script>
     function copyText(id) {
       const text = document.getElementById(id).innerText;
-      navigator.clipboard.writeText(text).then(() => showToast())
+      navigator.clipboard.writeText(text).then(() => showToast());
     }
+
     function showToast() {
       const toast = document.getElementById("toast");
       toast.classList.add("show");
-      setTimeout(() => { toast.classList.remove("show");}, 2000);
+      setTimeout(() => toast.classList.remove("show"), 2000);
     }
   </script>
-
-
 </body>
 </html>
