@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Támogasd a Bezergő Egyesületet 💚</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: #2d3436;
+
+      /* Virágos háttér */
+      background-image: url("https://images.unsplash.com/photo-1490750967868-88aa4486c946");
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* halvány fehér réteg, hogy olvasható maradjon */
+    .overlay {
+      background: rgba(255,255,255,0.85);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      max-width: 420px;
+      margin: auto;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .logo {
+      max-width: 120px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 10px 0;
+    }
+
+    .label {
+      font-size: 13px;
+      opacity: 0.7;
+      margin-top: 15px;
+    }
+
+    .value {
+      font-size: 17px;
+      font-weight: bold;
+      margin-top: 5px;
+      word-break: break-word;
+    }
+
+    .notice {
+      background: #ffeaa7;
+      padding: 15px;
+      border-radius: 12px;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+
+    .qr {
+      margin-top: 20px;
+    }
+
+    .qr img {
+      width: 180px;
+      border-radius: 12px;
+    }
+
+    button {
+      background: #00b894;
+      border: none;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      margin: 5px;
+    }
+
+    button:hover {
+      background: #019875;
+    }
+
+    .thanks {
+      margin-top: 20px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .hint {
+      font-size: 13px;
+      opacity: 0.7;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+    #toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #2d3436;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 14px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      z-index: 9999;
+    }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overlay">
+
+    <div class="card">
+
+      <!-- LOGÓ HELYE -->
+      <img src="logo.png" alt="Bezergő Egyesület logó" class="logo">
+
+      <h1>🌱 Támogass minket!</h1>
+      <p>Tegyünk együtt egy virágosabb Bezerédért 🌼</p>
+
+      <div class="label">Kedvezményezett</div>
+      <div class="value" id="name">Bezergő Egyesület</div>
+
+      <div class="label">Számlaszám</div>
+      <div class="value" id="accountNumber">
+        11600006-00000002-05047439
+      </div>
+
+      <div class="notice">
+        🌼 Közlemény:<br>
+        <strong id="message">virágosítás</strong>
+      </div>
+
+      <div class="hint">
+        📋 Koppints a gyors másoláshoz
+      </div>
+      <div>
+        <button onclick="copyText('name')">Név</button>
+        <button onclick="copyText('accountNumber')">Számlaszám</button>
+        <button onclick="copyText('message')">Közlemény</button>
+      </div>
+
+      <div class="thanks">
+        💚 Minden támogatás egy új virág!
+      </div>
+
+    </div>
+
+  </div>
+  <div id="toast">✔ Kimásolva 🌼</div>
+
+  <script>
+    function copyText(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => showToast())
+    }
+    function showToast() {
+      const toast = document.getElementById("toast");
+      toast.classList.add("show");
+      setTimeout(() => { toast.classList.remove("show");}, 2000);
+    }
+  </script>
+
+
+</body>
+</html>
